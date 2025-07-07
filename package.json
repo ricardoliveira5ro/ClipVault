@@ -1,0 +1,31 @@
+{
+  "name": "clipvault",
+  "version": "1.1.1",
+  "description": "Persistent CLI Clipboard Manager to monitor, save and manage your clipboard history efficiently, all from the terminal",
+  "main": "index.js",
+  "bin": {
+    "clipvault": "bin/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardoliveira5ro/ClipVault.git"
+  },
+  "keywords": [
+    "Clipboard",
+    "CLI",
+    "node.js"
+  ],
+  "author": "Ricardo Oliveira <ricardoliveira5ro@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricardoliveira5ro/ClipVault/issues"
+  },
+  "homepage": "https://github.com/ricardoliveira5ro/ClipVault#readme",
+  "dependencies": {
+    "commander": "^14.0.0"
+  }
+}
