@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
+import clipboard from 'clipboardy';
 
+// TODO: Parse JSON file
 const filePath = path.join(os.homedir(), 'Documents', 'clipvault.txt');
 
 export function watch() {
@@ -17,7 +19,15 @@ export function watch() {
             lastClipboardText = data.split(/\r?\n/)[0];
 
         const interval = setInterval(() => {
+            const text = clipboard.readSync();
             
+            if (text && text != '' && text != lastClipboardText) {
+                // TODO:
+                // Append new text to file
+                // [ID | TEXT | SIZE | TIMESTAMP | ISPINNED]
+
+                // Update lastClipboardText
+            }
         }, 200);
 
         process.on('SIGINT', () => {
