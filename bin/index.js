@@ -2,9 +2,11 @@
 
 import { program } from "commander";
 
+import { watch } from "../commands/watch.js";
+
 program
     .command('watch')
     .description('Start continuous clipboard monitoring')
-    .action(() => { console.log("Starting..") })
+    .action(watch)
 
 program.parse();
