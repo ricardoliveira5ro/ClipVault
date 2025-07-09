@@ -3,6 +3,8 @@ import path from 'path';
 import os from 'os';
 import crypto from 'crypto';
 import clipboard from 'clipboardy';
+import chalk from 'chalk';
+import figlet from 'figlet';
 
 import { formatSize } from '../utils/functions.js';
 
@@ -12,6 +14,9 @@ export function watch() {
     let lastClipboardText = '';
 
     try {
+        console.log(chalk.yellow(figlet.textSync('ClipVault', { horizontalLayout: "full" })));
+        console.log(chalk.blue('\n\nWatching for clipboard changes...'))
+
         if (!fs.existsSync(filePath))
             fs.writeFileSync(filePath, '', 'utf-8');
 
@@ -42,12 +47,13 @@ export function watch() {
         }, 200);
 
         process.on('SIGINT', () => {
+            console.log(chalk.bgRed('Stopped watching clipboard'))
             clearInterval(interval);
             process.exit(0);
         });
     
     } catch (err) {
-        console.error('File error:', err.message);
+        console.error(chalk.bgRed('An error occurred in the watch command:'), chalk.red(err.message));
     }
-    
+
 }
