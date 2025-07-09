@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { isNumeric } from "../utils/functions.js";
+import { isNumeric } from "../lib/utils.js";
 
 export function list(options) {
     if (options.last && !isNumeric(options.last)) {
