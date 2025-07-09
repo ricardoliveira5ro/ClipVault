@@ -1,14 +1,11 @@
 import fs from 'fs';
-import path from 'path';
-import os from 'os';
 import crypto from 'crypto';
 import clipboard from 'clipboardy';
 import chalk from 'chalk';
 import figlet from 'figlet';
 
-import { formatSize } from '../utils/functions.js';
-
-const filePath = path.join(os.homedir(), 'Documents', 'clipvault.json');
+import { FILE_PATH } from '../lib/constants.js';
+import { formatSize } from '../lib/utils.js';
 
 export function watch() {
     let lastClipboardText = '';
@@ -17,10 +14,10 @@ export function watch() {
         console.log(chalk.yellow(figlet.textSync('ClipVault', { horizontalLayout: "full" })));
         console.log(chalk.blue('\n\nWatching for clipboard changes...'))
 
-        if (!fs.existsSync(filePath))
-            fs.writeFileSync(filePath, '', 'utf-8');
+        if (!fs.existsSync(FILE_PATH))
+            fs.writeFileSync(FILE_PATH, '', 'utf-8');
 
-        const data = fs.readFileSync(filePath, 'utf-8');
+        const data = fs.readFileSync(FILE_PATH, 'utf-8');
 
         if (data) {
             const lines = data.trim().split('\n');
@@ -41,7 +38,7 @@ export function watch() {
                     isPinned: false
                 };
 
-                fs.appendFileSync(filePath, JSON.stringify(newClipboard) + '\n', 'utf-8');
+                fs.appendFileSync(FILE_PATH, JSON.stringify(newClipboard) + '\n', 'utf-8');
                 lastClipboardText = text;
             }
         }, 200);
