@@ -3,6 +3,7 @@ import fs from "fs";
 
 import { FILE_PATH } from "../lib/constants.js";
 import { isNumeric } from "../lib/utils.js";
+import { listing } from "../lib/tableListing.js";
 
 export function list(options) {
     try {
@@ -21,11 +22,14 @@ export function list(options) {
 
         const numOfRecordsToDisplay = options.last ? parseInt(options.last) : Number.MAX_SAFE_INTEGER;
 
-        const lines = data.trim().split('\n');
+        const lines = data.trim().split('\n').reverse();
         const linesToDisplay = (lines.length > numOfRecordsToDisplay) ? 
-                                    lines.slice(lines.length - numOfRecordsToDisplay, lines.length) : lines
+                                    lines.slice(0, numOfRecordsToDisplay) : lines;
 
-        
+        const linesLeft = (lines.length > numOfRecordsToDisplay) ?
+                                lines.slice(numOfRecordsToDisplay, lines.length) : [];
+
+        listing(linesToDisplay, linesLeft);
 
     } catch (err) {
         console.error(chalk.bgRed('An error occurred in the list command:'), chalk.red(err.message));
