@@ -31,10 +31,10 @@ export function watch() {
             
             if (text && text != '' && text != lastClipboardText) {
                 const newClipboard = {
-                    id: crypto.randomBytes(6).toString('hex'),
+                    id: crypto.randomBytes(4).toString('hex'),
                     text: text,
                     size: formatSize(Buffer.byteLength(text, 'utf-8')),
-                    timestamp: new Date().toISOString(),
+                    timestamp: new Date().toLocaleString(),
                     isPinned: false
                 };
 
