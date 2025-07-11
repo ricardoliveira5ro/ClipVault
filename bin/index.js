@@ -7,6 +7,7 @@ import { list } from "../commands/list.js";
 import { pin } from "../commands/pin.js";
 import { unpin } from "../commands/unpin.js";
 import { copy } from "../commands/copy.js";
+import { remove } from "../commands/remove.js";
 
 program
     .command('watch')
@@ -36,5 +37,12 @@ program
     .description('Copy a saved clipboard entry back to the system clipboard')
     .argument('<id>', 'Clipboard entry identifier')
     .action((id) => copy(id))
+
+program
+    .command('remove')
+    .description('Remove a clipboard entry by its ID')
+    .argument('<id>', 'Clipboard entry identifier')
+    .option('--force', 'Force to remove pinned clips too')
+    .action((id, options) => remove(id, options))
 
 program.parse();
