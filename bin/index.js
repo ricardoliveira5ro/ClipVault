@@ -6,6 +6,7 @@ import { watch } from "../commands/watch.js";
 import { list } from "../commands/list.js";
 import { pin } from "../commands/pin.js";
 import { unpin } from "../commands/unpin.js";
+import { copy } from "../commands/copy.js";
 
 program
     .command('watch')
@@ -29,5 +30,11 @@ program
     .description('Unpin a clipboard entry by its ID')
     .argument('<id>', 'Clipboard entry identifier')
     .action((id) => unpin(id))
+
+program
+    .command('copy')
+    .description('Copy a saved clipboard entry back to the system clipboard')
+    .argument('<id>', 'Clipboard entry identifier')
+    .action((id) => copy(id))
 
 program.parse();
