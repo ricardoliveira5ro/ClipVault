@@ -1,19 +1,11 @@
 import clipboard from 'clipboardy';
 import chalk from "chalk";
-import fs from "fs";
 
-import { FILE_PATH } from '../lib/constants.js';
+import { readFileInit } from '../lib/utils.js';
 
 export function copy(id) {
     try {
-        if (!fs.existsSync(FILE_PATH))
-            fs.writeFileSync(FILE_PATH, '', 'utf-8');
-    
-        const data = fs.readFileSync(FILE_PATH, 'utf-8');
-    
-        if (!data) {
-            throw new Error('No data available');
-        }
+        const data = readFileInit();
 
         const lines = data.trim().split('\n');
         const result = lines.find((clip) => JSON.parse(clip).id === id);

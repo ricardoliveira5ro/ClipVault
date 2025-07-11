@@ -5,7 +5,7 @@ import { updateRecord } from "../lib/updateRecord.js";
 export function pin(id) {
     try {
         const result = updateRecord(id, (clip) => {
-            clip.isPinned = false;
+            clip.isPinned = true;
             return clip;
         });
 

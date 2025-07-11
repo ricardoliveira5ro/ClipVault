@@ -1,8 +1,6 @@
 import chalk from "chalk";
-import fs from "fs";
 
-import { FILE_PATH } from "../lib/constants.js";
-import { isNumeric } from "../lib/utils.js";
+import { isNumeric, readFileInit } from "../lib/utils.js";
 import { listing } from "../lib/tableListing.js";
 
 export function list(options) {
@@ -11,14 +9,7 @@ export function list(options) {
             throw new Error('Invalid option \'last\'. It must be a positive number');
         }
 
-        if (!fs.existsSync(FILE_PATH))
-            fs.writeFileSync(FILE_PATH, '', 'utf-8');
-    
-        const data = fs.readFileSync(FILE_PATH, 'utf-8');
-
-        if (!data) {
-            throw new Error('No data available');
-        }
+        const data = readFileInit();
 
         const numOfRecordsToDisplay = options.last ? parseInt(options.last) : Number.MAX_SAFE_INTEGER;
 
