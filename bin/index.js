@@ -5,6 +5,7 @@ import { program } from "commander";
 import { watch } from "../commands/watch.js";
 import { list } from "../commands/list.js";
 import { pin } from "../commands/pin.js";
+import { unpin } from "../commands/unpin.js";
 
 program
     .command('watch')
@@ -22,5 +23,11 @@ program
     .description('Pin a clipboard entry by its ID')
     .argument('<id>', 'Clipboard entry identifier')
     .action((id) => pin(id))
+
+program
+    .command('unpin')
+    .description('Unpin a clipboard entry by its ID')
+    .argument('<id>', 'Clipboard entry identifier')
+    .action((id) => unpin(id))
 
 program.parse();

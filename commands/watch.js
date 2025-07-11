@@ -40,6 +40,8 @@ export function watch() {
 
                 fs.appendFileSync(FILE_PATH, JSON.stringify(newClipboard) + '\n', 'utf-8');
                 lastClipboardText = text;
+
+                console.log(chalk.grey('Copied: ' + text));
             }
         }, 200);
 
