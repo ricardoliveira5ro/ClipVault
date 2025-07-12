@@ -9,6 +9,7 @@ import { unpin } from "../commands/unpin.js";
 import { copy } from "../commands/copy.js";
 import { remove } from "../commands/remove.js";
 import { clear } from "../commands/clear.js";
+import { search } from "../commands/search.js";
 
 program
     .command('watch')
@@ -52,5 +53,14 @@ program
     .option('--force', 'Force to clear pinned clips too')
     .option('--days <number>', 'Keep last <n> days history')
     .action((options) => clear(options))
+
+program
+    .command('search')
+    .description('Search through the clipboard entries')
+    .option('--query <text>', 'Text expression to match')
+    // .option('--date <date>', 'Date (YYYY-MM-DD) to match entries copied on that day')
+    // .option('--size <number>', 'Text expression to match')
+    // .option('--pinned', 'Only pinned clipboard entries')
+    .action((options) => search(options))
 
 program.parse();
