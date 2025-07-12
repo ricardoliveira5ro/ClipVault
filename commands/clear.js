@@ -17,7 +17,7 @@ export function clear(options) {
                                                     (!options.force && JSON.parse(clip).isPinned)
         );
         
-        fs.writeFileSync(FILE_PATH, updatedLines.join('\n') + '\n', 'utf-8');
+        fs.writeFileSync(FILE_PATH, `${updatedLines.join('\n')}${updatedLines.length === 0 ? '' : '\n'}`, 'utf-8');
 
         console.log(chalk.bgGreen(`${options.force ? 'Clipboard entries cleared successfully' : 'Unpinned clipboard entries cleared successfully. Use --force flag to clear pinned entries too'}`));
     } catch (err) {

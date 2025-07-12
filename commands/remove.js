@@ -28,7 +28,7 @@ export function remove(id, options) {
             return true;
         });
         
-        fs.writeFileSync(FILE_PATH, updatedLines.join('\n') + '\n', 'utf-8');
+        fs.writeFileSync(FILE_PATH, `${updatedLines.join('\n')}${updatedLines.length === 0 ? '' : '\n'}`, 'utf-8');
 
         if (!wasRemoved && !wasPinned) {
             console.log(chalk.bgRed(`Could not found with id ${id}`));
