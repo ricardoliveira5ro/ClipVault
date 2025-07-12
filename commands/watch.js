@@ -15,7 +15,7 @@ export function watch() {
         console.log(chalk.blue('\n\nWatching for clipboard changes...'))
 
         if (!fs.existsSync(FILE_PATH))
-            fs.writeFileSync(FILE_PATH, '', 'utf-8');
+            fs.writeFileSync(FILE_PATH, '\n', 'utf-8');
 
         const data = fs.readFileSync(FILE_PATH, 'utf-8');
 
