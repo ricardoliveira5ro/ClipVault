@@ -9,12 +9,10 @@ export function clear(options) {
         const data = readFileInit();
 
         const lines = data.trim().split('\n');
-        const updatedLines = lines.filter((clip) => JSON.parse(clip).isPinned);
+        const updatedLines = lines.filter((clip) => !options.force && JSON.parse(clip).isPinned);
+        fs.writeFileSync(FILE_PATH, updatedLines.join('\n') + '\n', 'utf-8');
 
-        fs.writeFileSync(FILE_PATH, updatedLines.join('\n'), 'utf-8');
-
-        console.log(chalk.bgGreen(`All clipboard entries cleared successfully`));
-        
+        console.log(chalk.bgGreen(`${options.force ? 'All clipboard entries cleared successfully' : 'All unpinned clipboard entries cleared successfully. Use --force flag to clear pinned entries too'}`));
     } catch (err) {
         console.error(chalk.bgRed('An error occurred in the clear command:'), chalk.red(err.message));
     }
