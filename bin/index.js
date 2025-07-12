@@ -50,6 +50,7 @@ program
     .command('clear')
     .description('Clear clipboard entirely')
     .option('--force', 'Force to clear pinned clips too')
+    .option('--days <number>', 'Keep last <n> days history')
     .action((options) => clear(options))
 
 program.parse();
