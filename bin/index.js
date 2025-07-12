@@ -8,6 +8,7 @@ import { pin } from "../commands/pin.js";
 import { unpin } from "../commands/unpin.js";
 import { copy } from "../commands/copy.js";
 import { remove } from "../commands/remove.js";
+import { clear } from "../commands/clear.js";
 
 program
     .command('watch')
@@ -44,5 +45,11 @@ program
     .argument('<id>', 'Clipboard entry identifier')
     .option('--force', 'Force to remove pinned clips too')
     .action((id, options) => remove(id, options))
+
+program
+    .command('clear')
+    .description('Clear clipboard entirely')
+    .option('--force', 'Force to clear pinned clips too')
+    .action((options) => clear(options))
 
 program.parse();

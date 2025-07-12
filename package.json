@@ -1,6 +1,6 @@
 {
   "name": "clipvault",
-  "version": "1.6.1",
+  "version": "1.7.1",
   "description": "Persistent CLI Clipboard Manager to monitor, save and manage your clipboard history efficiently, all from the terminal",
   "main": "index.js",
   "bin": {
