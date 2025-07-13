@@ -61,7 +61,7 @@ program
     .option('--date <date>', 'Date (YYYY-MM-DD) to match entries copied on that day')
     .option('--min-size <number>', 'Minimum clipboard entry size')
     .option('--max-size <number>', 'Maximum clipboard entry size')
-    // .option('--pinned', 'Only pinned clipboard entries')
+    .option('--pinned', 'Only pinned clipboard entries')
     .action((options) => search(options))
 
 program.parse();

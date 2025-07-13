@@ -34,6 +34,9 @@ export function search(options) {
             lines = lines.filter((clip) => JSON.parse(clip).size >= parseInt(options.minSize));
         }
 
+        if (options.pinned)
+            lines = lines.filter((clip) => JSON.parse(clip).isPinned);
+
         listing(lines);
 
     } catch (err) {
