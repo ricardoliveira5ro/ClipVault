@@ -1,6 +1,6 @@
 {
   "name": "clipvault",
-  "version": "1.8.2",
+  "version": "1.10.1",
   "description": "Persistent CLI Clipboard Manager to monitor, save and manage your clipboard history efficiently, all from the terminal",
   "main": "index.js",
   "bin": {
@@ -8,7 +8,7 @@
   },
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
@@ -32,5 +32,8 @@
     "commander": "^14.0.0",
     "dayjs": "^1.11.13",
     "figlet": "^1.8.1"
+  },
+  "devDependencies": {
+    "jest": "^30.0.4"
   }
 }
