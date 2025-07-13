@@ -20,11 +20,18 @@ export function search(options) {
             lines = lines.filter((clip) => dayjs(JSON.parse(clip).timestamp).format('YYYY-MM-DD') === options.date);
         }
 
-        if (options.size) {
-            if (!isNumeric(options.size) || parseInt(options.last) <= 0)
-                throw new Error('Invalid option \'size\'. It must be a positive number');
+        if (options.maxSize) {
+            if (!isNumeric(options.maxSize) || parseInt(options.maxSize) <= 0)
+                throw new Error('Invalid option \'max-size\'. It must be a positive number');
 
-            lines = lines.filter((clip) => JSON.parse(clip).size === parseInt(options.size));
+            lines = lines.filter((clip) => JSON.parse(clip).size <= parseInt(options.maxSize));
+        }
+
+        if (options.minSize) {
+            if (!isNumeric(options.minSize) || parseInt(options.minSize) <= 0)
+                throw new Error('Invalid option \'min-size\'. It must be a positive number');
+
+            lines = lines.filter((clip) => JSON.parse(clip).size >= parseInt(options.minSize));
         }
 
         listing(lines);

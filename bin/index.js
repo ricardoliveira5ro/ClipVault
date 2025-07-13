@@ -59,7 +59,8 @@ program
     .description('Search through the clipboard entries')
     .option('--query <text>', 'Text expression to match')
     .option('--date <date>', 'Date (YYYY-MM-DD) to match entries copied on that day')
-    .option('--size <number>', 'Clipboard entry size')
+    .option('--min-size <number>', 'Minimum clipboard entry size')
+    .option('--max-size <number>', 'Maximum clipboard entry size')
     // .option('--pinned', 'Only pinned clipboard entries')
     .action((options) => search(options))
 
