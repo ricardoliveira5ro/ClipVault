@@ -2,7 +2,7 @@ import chalk from "chalk";
 import dayjs from "dayjs";
 
 import { listing } from "../lib/tableListing.js";
-import { readFileInit } from "../lib/utils.js";
+import { isNumeric, readFileInit } from "../lib/utils.js";
 
 export function search(options) {
     try {
@@ -18,6 +18,13 @@ export function search(options) {
                 throw new Error("Invalid 'date' argument. Please use format YYYY-MM-DD");
 
             lines = lines.filter((clip) => dayjs(JSON.parse(clip).timestamp).format('YYYY-MM-DD') === options.date);
+        }
+
+        if (options.size) {
+            if (!isNumeric(options.size) || parseInt(options.last) <= 0)
+                throw new Error('Invalid option \'size\'. It must be a positive number');
+
+            lines = lines.filter((clip) => JSON.parse(clip).size === parseInt(options.size));
         }
 
         listing(lines);
