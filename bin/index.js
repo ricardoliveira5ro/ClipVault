@@ -13,55 +13,55 @@ import { search } from "../commands/search.js";
 
 program
     .command('watch')
-    .description('Start continuous clipboard monitoring')
+    .description('Start monitoring the clipboard for new entries')
     .action(watch)
 
 program
     .command('list')
-    .description('List saved clipboard entries with optional filters')
-    .option('--last <number>', 'Show only the last <n> clipboard entries')
+    .description('Display saved clipboard entries')
+    .option('--last <number>', 'Show only the most recent <n> entries')
     .action((options) => list(options))
 
 program
     .command('pin')
-    .description('Pin a clipboard entry by its ID')
-    .argument('<id>', 'Clipboard entry identifier')
+    .description('Mark a clipboard entry as pinned by its ID')
+    .argument('<id>', 'ID of the clipboard entry to pin')
     .action((id) => pin(id))
 
 program
     .command('unpin')
-    .description('Unpin a clipboard entry by its ID')
-    .argument('<id>', 'Clipboard entry identifier')
+    .description('Remove the pinned status from an entry by its ID')
+    .argument('<id>', 'ID of the clipboard entry to unpin')
     .action((id) => unpin(id))
 
 program
     .command('copy')
     .description('Copy a saved clipboard entry back to the system clipboard')
-    .argument('<id>', 'Clipboard entry identifier')
+    .argument('<id>', 'ID of the clipboard entry to copy')
     .action((id) => copy(id))
 
 program
     .command('remove')
-    .description('Remove a clipboard entry by its ID')
-    .argument('<id>', 'Clipboard entry identifier')
-    .option('--force', 'Force to remove pinned clips too')
+    .description('Delete a clipboard entry by its ID')
+    .argument('<id>', 'ID of the clipboard entry to remove')
+    .option('--force', 'Allow deletion of pinned entries')
     .action((id, options) => remove(id, options))
 
 program
     .command('clear')
-    .description('Clear clipboard entirely')
-    .option('--force', 'Force to clear pinned clips too')
-    .option('--days <number>', 'Keep last <n> days history')
+    .description('Clear clipboard history')
+    .option('--force', 'Also delete pinned entries')
+    .option('--days <number>', 'Keep only the last <n> days of entries')
     .action((options) => clear(options))
 
 program
     .command('search')
-    .description('Search through the clipboard entries')
-    .option('--query <text>', 'Text expression to match')
-    .option('--date <date>', 'Date (YYYY-MM-DD) to match entries copied on that day')
-    .option('--min-size <number>', 'Minimum clipboard entry size')
-    .option('--max-size <number>', 'Maximum clipboard entry size')
-    .option('--pinned', 'Only pinned clipboard entries')
+    .description('Search saved clipboard entries with filters')
+    .option('--query <text>', 'Text to search for')
+    .option('--date <date>', 'Match entries by date (YYYY-MM-DD)')
+    .option('--min-size <number>', 'Minimum size in bytes')
+    .option('--max-size <number>', 'Maximum size in bytes')
+    .option('--pinned', 'Only show pinned entries')
     .action((options) => search(options))
 
 program.parse();
