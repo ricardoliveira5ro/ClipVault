@@ -5,7 +5,6 @@ import chalk from 'chalk';
 import figlet from 'figlet';
 
 import { FILE_PATH } from '../lib/constants.js';
-import { formatSize } from '../lib/utils.js';
 
 export function watch() {
     let lastClipboardText = '';
@@ -33,7 +32,7 @@ export function watch() {
                 const newClipboard = {
                     id: crypto.randomBytes(4).toString('hex'),
                     text: text,
-                    size: formatSize(Buffer.byteLength(text, 'utf-8')),
+                    size: Buffer.byteLength(text, 'utf-8'),
                     timestamp: new Date().toISOString(),
                     isPinned: false
                 };
