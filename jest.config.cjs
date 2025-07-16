@@ -1,3 +1,5 @@
 module.exports = {
-    coverageReporters: ['text']
+    coverageReporters: ['text'],
+    testEnvironment: 'node',
+    transform: {},
 };
