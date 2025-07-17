@@ -10,9 +10,13 @@ export function copy(id) {
         const lines = data.trim().split('\n');
         const result = lines.find((clip) => JSON.parse(clip).id === id);
 
-        clipboard.writeSync(JSON.parse(result).text);
+        if (!result) {
+            console.log(chalk.bgRed(`Could not found with id ${id}`));
+            return;
+        }
 
-        console.log(result ? chalk.bgGreen(`Clipboard entry ${id} copied to clipboard successfully`) : chalk.bgRed(`Could not found with id ${id}`));
+        clipboard.writeSync(JSON.parse(result).text);
+        console.log(chalk.bgGreen(`Clipboard entry ${id} copied to clipboard successfully`));
     
     } catch (err) {
         console.error(chalk.bgRed('An error occurred in the copy command:'), chalk.red(err.message));
