@@ -98,6 +98,7 @@ Mocks are created using `jest.unstable_mockModule` for ESM compatibility
 npm run coverage
 ```
 Current code coverage: 97.93%
+
 ![Coverage Report](./__tests__/coverage.png)
 
 <br>
